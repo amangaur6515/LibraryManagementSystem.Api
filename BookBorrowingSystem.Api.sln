@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33530.505
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookBorrowingSystem.Api", "BookBorrowingSystem.Api.csproj", "{F26A5219-AF67-4DE7-8EE5-DDE4985F1A96}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F26A5219-AF67-4DE7-8EE5-DDE4985F1A96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F26A5219-AF67-4DE7-8EE5-DDE4985F1A96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F26A5219-AF67-4DE7-8EE5-DDE4985F1A96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F26A5219-AF67-4DE7-8EE5-DDE4985F1A96}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4DFAD323-B28C-4F69-AF96-FFD75AF59643}
+	EndGlobalSection
+EndGlobal
