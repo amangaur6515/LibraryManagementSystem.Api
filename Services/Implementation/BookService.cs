@@ -27,5 +27,59 @@ namespace BookBorrowingSystem.Api.Services.Implementation
             return false;
 
         }
+
+        public bool BorrowBook(BookTransaction bookTransactionObj)
+        {
+            if (bookTransactionObj.BookId == 0 || bookTransactionObj.BookId == null)
+            {
+                return false;
+            }
+            if( bookTransactionObj!= null)
+            {
+                bool res=_bookRepository.BorrowBook(bookTransactionObj);
+                return res;
+            }
+            return false;
+        } 
+
+        public List<Book> BooksBorrowedByUserId(string username)
+        {
+
+            if (username != "" || username != null)
+            {
+                List<Book> booksBorrowedByUserId=_bookRepository.BooksBorrowedByUserId(username);
+                return booksBorrowedByUserId;
+            }
+            List<Book> emptyList=new List<Book>();
+            return emptyList;
+            
+        }
+
+        public List<Book> BooksLentByUserId(string username)
+        {
+            if (username != "" || username != null)
+            {
+                List<Book> booksLentByUserId = _bookRepository.BooksLentByUserId(username);
+                return booksLentByUserId;
+            }
+            List<Book> emptyList = new List<Book>();
+            return emptyList;
+        }
+
+        public List<Book> GetAllBooks()
+        {
+            List<Book> books=_bookRepository.GetAllBooks();
+            return books;
+        }
+
+        public int GetTokensByUserId(string username)
+        {
+            if (username != "" || username != null)
+            {
+                int tokens=_bookRepository.GetTokensByUserId(username);
+                return tokens;
+            }
+            return -1;
+        }
     }
 }

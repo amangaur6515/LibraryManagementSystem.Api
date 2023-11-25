@@ -44,7 +44,7 @@ namespace BookBorrowingSystem.Api
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-
+            app.UseCors(policy => policy.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
             app.UseHttpsRedirection();
 
             app.UseAuthentication();
