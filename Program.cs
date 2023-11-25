@@ -1,5 +1,9 @@
+using BookBorrowingSystem.Api.DAO.Abstract;
+using BookBorrowingSystem.Api.DAO.Implementation;
 using BookBorrowingSystem.Api.Data;
 using BookBorrowingSystem.Api.Models;
+using BookBorrowingSystem.Api.Services.Abstract;
+using BookBorrowingSystem.Api.Services.Implementation;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -23,6 +27,9 @@ namespace BookBorrowingSystem.Api
             builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+
+            builder.Services.AddScoped<IBookService, BookService>();
+            builder.Services.AddScoped<IBookRepository, BookRepository>();
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

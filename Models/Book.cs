@@ -21,7 +21,7 @@ namespace BookBorrowingSystem.Api.Models
         public string  Description { get; set; }
         [Required]
         public string  LentByUserId { get; set;}
-        [Required]
+        
         public string BorrowedByUserId { get; set;}
     }
 }
