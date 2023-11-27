@@ -64,7 +64,7 @@ namespace BookBorrowingSystem.Api.Controllers
                     //get the available tokens from userProfiles table
                     UserProfile userProfile=_db.UserProfiles.FirstOrDefault(obj => obj.Username == signInModel.Username);
                     int tokensAvaialable = userProfile.TokensAvailable;
-                    var response = new { Username = signInModel.Username , TokensAvailable=tokensAvaialable};
+                    var response = new { Username = signInModel.Username };
                     return Ok(response);
 
                 }

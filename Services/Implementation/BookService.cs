@@ -81,5 +81,16 @@ namespace BookBorrowingSystem.Api.Services.Implementation
             }
             return -1;
         }
+
+        public Book GetBookById(int id)
+        {
+            if(id!=0 || id != null)
+            {
+                Book book=_bookRepository.GetBookById(id);
+                return book;
+            }
+            Book emptyBook=new Book();
+            return emptyBook;
+        }
     }
 }

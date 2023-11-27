@@ -2,6 +2,7 @@
 using BookBorrowingSystem.Api.Data;
 using BookBorrowingSystem.Api.Models;
 using BookBorrowingSystem.Api.Services.Implementation;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BookBorrowingSystem.Api.DAO.Implementation
 {
@@ -49,8 +50,9 @@ namespace BookBorrowingSystem.Api.DAO.Implementation
                 {
                     //add record in book transaction table
                     _db.BookTransactions.Add(bookTransactionObj);
-                    //update borrowedBy column of books table
+                    //update borrowedBy column of books table, and isvailable
                     book.BorrowedByUserId = borrowedBy;
+                    book.IsAvailable = false;
                 }
 
                 //update userProfile books tokens available and books borrowed column
@@ -100,5 +102,18 @@ namespace BookBorrowingSystem.Api.DAO.Implementation
             }
             return -1;
         }
+
+        
+        public Book GetBookById( int id)
+        {
+            Book book = _db.Books.FirstOrDefault(book => book.Id == id);
+            if(book != null)
+            {
+                return book;
+            }
+            Book emptyBook = new Book();
+            return emptyBook;
+        }
+
     }
 }

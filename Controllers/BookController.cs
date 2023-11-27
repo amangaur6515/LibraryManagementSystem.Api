@@ -80,18 +80,32 @@ namespace BookBorrowingSystem.Api.Controllers
                 var response = new { message = "Invalid User" };
                 return BadRequest(response);
             }
-            return Ok(tokens);
+            var res = new { Token = tokens };
+            return Ok(res);
+        }
+
+        [HttpGet("BookById/{id}")]
+        public IActionResult BookById([FromRoute] int id)
+        {
+            Book book=_bookService.GetBookById(id);
+            if (book.Id != 0)
+            {
+                return Ok(book);
+            }
+            var res=new { Message="Invalid Id" };
+            return BadRequest(res);
         }
 
         [HttpPost("Test")]
         public IActionResult Test(int id)
         {
-            var x=_db.UserProfiles.FirstOrDefault(obj => obj.Id == id);
-            x.TokensAvailable += 1;
-            x.BooksBorrowed -= 1;
+            var x=_db.Books.FirstOrDefault(obj => obj.Id == id);
+            x.IsAvailable = false;
+           
             _db.SaveChanges();
             return Ok(x);
         }
+
         
     }
 }
