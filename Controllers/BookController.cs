@@ -47,7 +47,7 @@ namespace BookBorrowingSystem.Api.Controllers
                     return Ok(response);
                 }
             }
-            ModelState.AddModelError("", "Invalid user");
+            ModelState.AddModelError("", "Insufficient Token");
             return BadRequest(ModelState);
         }
 
@@ -80,8 +80,8 @@ namespace BookBorrowingSystem.Api.Controllers
                 var response = new { message = "Invalid User" };
                 return BadRequest(response);
             }
-            var res = new { Token = tokens };
-            return Ok(res);
+            
+            return Ok(tokens);
         }
 
         [HttpGet("BookById/{id}")]
@@ -104,6 +104,19 @@ namespace BookBorrowingSystem.Api.Controllers
            
             _db.SaveChanges();
             return Ok(x);
+        }
+
+        [HttpPost("ReturnBook")]
+        public IActionResult ReturnBook([FromBody] Book bookObj)
+        {
+            bool res=_bookService.ReturnBook(bookObj);
+            if (res)
+            {
+                var response = new { Message = "Return Successs" };
+                return Ok(res);
+            }
+            var error = new { Message = "Return Failed" };
+            return BadRequest(error);
         }
 
         

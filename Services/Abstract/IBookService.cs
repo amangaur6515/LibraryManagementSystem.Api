@@ -12,5 +12,7 @@ namespace BookBorrowingSystem.Api.Services.Abstract
 
         public int GetTokensByUserId(string username);
         public Book GetBookById(int id);
+        public bool ReturnBook(Book bookObj);
+        
     }
 }

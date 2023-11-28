@@ -46,8 +46,11 @@ namespace BookBorrowingSystem.Api.DAO.Implementation
             if (userProfileBorrowing!=null && userProfileLenting!=null && userProfileBorrowing.TokensAvailable >= 1)
             {
                 Book book = _db.Books.FirstOrDefault(obj => obj.Id == bookId);
-                if (book != null)
+                //user can't buy his own books
+                if (book != null )
                 {
+                    //check if lender and borrower is same
+                    if(book.LentByUserId==lentBy)
                     //add record in book transaction table
                     _db.BookTransactions.Add(bookTransactionObj);
                     //update borrowedBy column of books table, and isvailable
@@ -57,7 +60,7 @@ namespace BookBorrowingSystem.Api.DAO.Implementation
 
                 //update userProfile books tokens available and books borrowed column
 
-                if (userProfileBorrowing != null && userProfileLenting != null)
+                if (userProfileBorrowing != null && userProfileLenting != null )
                 {
                     userProfileBorrowing.BooksBorrowed += 1;
                     userProfileBorrowing.TokensAvailable -= 1;
@@ -113,6 +116,19 @@ namespace BookBorrowingSystem.Api.DAO.Implementation
             }
             Book emptyBook = new Book();
             return emptyBook;
+        }
+
+        public bool ReturnBook(int id)
+        {
+            Book book = _db.Books.FirstOrDefault(obj =>obj.Id==id );
+            if(book != null)
+            {
+                book.IsAvailable = true;
+                book.BorrowedByUserId = "";
+                _db.SaveChanges();
+                return true;
+            }
+            return false;
         }
 
     }

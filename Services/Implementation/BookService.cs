@@ -92,5 +92,15 @@ namespace BookBorrowingSystem.Api.Services.Implementation
             Book emptyBook=new Book();
             return emptyBook;
         }
+
+        public bool ReturnBook(Book bookObj)
+        {
+            if (bookObj != null)
+            {
+                bool res=_bookRepository.ReturnBook(bookObj.Id);
+                return res;
+            }
+            return false;
+        }
     }
 }

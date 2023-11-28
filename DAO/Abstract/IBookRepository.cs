@@ -12,5 +12,6 @@ namespace BookBorrowingSystem.Api.DAO.Abstract
 
         public int GetTokensByUserId(string username);
         public Book GetBookById(int id);
+        public bool ReturnBook(int id);
     }
 }
