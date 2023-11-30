@@ -75,5 +75,14 @@ namespace BookBorrowingSystem.Api.Controllers
 
 
         }
+
+        [HttpPost("Logout")]
+
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            var res = new { Message = "Logout success" };
+            return Ok(res);
+        }
     }
 }

@@ -6,6 +6,9 @@ using BookBorrowingSystem.Api.Services.Abstract;
 using BookBorrowingSystem.Api.Services.Implementation;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using NETCore.MailKit.Core;
+using User.Management.Service.Models;
 
 namespace BookBorrowingSystem.Api
 {
@@ -27,6 +30,13 @@ namespace BookBorrowingSystem.Api
             builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+
+            //Add email configs
+            var emailConfig = builder.Configuration.GetSection("EmailConfiguration").Get<EmailConfiguration>();
+            builder.Services.AddSingleton(emailConfig);
+
+            builder.Services.AddScoped<IEmailService, EmailService>();
+
 
             builder.Services.AddScoped<IBookService, BookService>();
             builder.Services.AddScoped<IBookRepository, BookRepository>();
